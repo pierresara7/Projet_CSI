@@ -1,6 +1,5 @@
 <?php
-	require_once("tools.php");
-	connexion2();
+	include("connexion_database.php");
 // recuperation de l'login
 	$login=$_POST['login'];
 
@@ -11,17 +10,17 @@
 
 
 	//requete permettant de rechercher l'utilisateur
-$req=mysql_query("SELECT COUNT(*) > 0 FROM users WHERE username='".$login."' AND password='".$cryptedPw."'");
+$req=mysql_query("SELECT COUNT(*) > 0 FROM authentificationclient WHERE LOGIN='".$login."' AND MDP='".$cryptedPw."'");
 $row = mysql_fetch_row($req);
 	if($row[0]==0){
 		
-	header('Location: index.php?verif=0');
+	header('Location: accueil.php?verif=0');
 	
 	}
 	else{
 		session_start();
-		$_SESSION['login'] = $login;
-		header ('Location: index.php' );	
+		$_SESSION['LOGIN'] = $login;
+		header ('Location: accueil.php' );	
 		exit();
 	}
 

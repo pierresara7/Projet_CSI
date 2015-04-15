@@ -1,0 +1,100 @@
+
+.label{
+  display: inline-block;
+  width: 100px;
+}
+.img_securite{
+width: 150px;
+height: 15px;
+}
+.img_connexion{
+width:100px;
+height:50px;
+}
+html{
+	font-family: 'Roboto', sans-serif;
+	background: url(image/fond.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+div{
+	margin: 10px;
+	padding: 10px;
+}
+#titre{
+	width: 70%;
+	font-size: 2.7em;
+	color : #1172B3;
+	height: 100px;
+}
+#titre h1{
+	font-weight: 100;
+	font-style: italic;
+}
+
+#connect{
+	font-weight: 100;
+	font-style: italic;
+	color : white;
+	background-color: #1172B3;
+	
+}
+
+
+#recherche{
+	font-weight: 100;
+	font-style: italic;
+	
+	color : white;
+	background-color: #1172B3;
+}
+
+#creer{
+	
+	font-weight: 100;
+	font-style: italic;
+	
+	color : white;
+	background-color: #1172B3;
+}
+
+input{
+	 border-radius: 10px;
+}
+
+#res{
+	background-color: #1172B3;
+	color: white;
+	width: 100%;
+}
+
+audio{
+	background-color: #1172B3;
+	color: #1172B3;
+}
+
+#gauche{
+	float: left;
+	width : 70%;
+}
+
+#droite{
+	margin-left: 70%;
+}
+
+#playlists{
+	color : white;
+	background-color: #1172B3;
+}
+
+#playliste_name{
+	font-weight: 100;
+	color : white;
+}
+#titre_piste{
+	
+}
+#nom_artiste{
+	font-weight: bold;
+}
+

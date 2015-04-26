@@ -17,8 +17,8 @@
 		<?php endif ?>
 
 		<?php
-    		require_once ("connexion.php");
-			$req="select * from produit";
+    		require_once ("connexion_database.php");
+			$req="select * from produit as p INNER JOIN avoir as a on p.id_prod=a.id_prod INNER JOIN prix as pr on a.id_prix=pr.id_prix  ";
 			$exe=mysql_query($req);
  
 			echo"<table class='span8'>

@@ -10,10 +10,14 @@
 </script>
 	<?php
 		if(isset($_POST['go'])){
-			require_once ("connexion.php");
+			require_once ("connexion_database.php");
 			print_r($_POST);
 			extract($_POST);
-				$req="insert into produit values('','$design','$qtestock','$prix')";
+				$req="insert into produit(nom_prod) values('$nom')";
+				$req2="insert into prix_prouit(prix) values('$prix')";
+				$req3="SELECT MAX id_prod from Produit"
+				$req3="insert into avoir(id_prod,id_prix) values ()"
+
 				$exe=mysql_query($req);
 				header("location:produit.php");
 		}
@@ -27,10 +31,16 @@
 		<form role="form" action="#" method="post">
 		    <pre class="span8">
 
-			    Produit  <input type="text" name="design" style="height:30px" placeholder="Nom du Produit">
+			    Produit  <input type="text" name="nom" style="height:30px" placeholder="Nom du Produit">
 
-			    Nombre   <input type="text" name="qtestock" style="height:30px" placeholder="Quantitee">
-
+<select name="liste">
+<?php
+$sql='SELECT id_catprod,intitule_cat from categorieproduit';
+$list = mysql_query($sql);
+while ($data = mysql_fetch_array($list))
+     {echo'<option value="'.$data['id_catprod'].'">'.$data['intitule_cat'].'</option>';}
+?>
+</select>
 			    Prix     <input type="text" name="prix" style="height:30px" placeholder="Prix Unitaire">
 
 			           <input type="submit" name="go" value="Ajouter" class="btn btn-danger">

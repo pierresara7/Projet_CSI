@@ -14,12 +14,23 @@
 			print_r($_POST);
 			extract($_POST);
 				$req="insert into produit(nom_prod) values('$nom')";
-				$req2="insert into prix_prouit(prix) values('$prix')";
-				$req3="SELECT MAX id_prod from Produit"
-				$req3="insert into avoir(id_prod,id_prix) values ()"
+				$req2="insert into prix_produit(prix) values('$prix')";
+				$req3="SELECT MAX(id_prod) from Produit";
+				$req4="SELECT MAX(id_prix) from prix_produit";
 
 				$exe=mysql_query($req);
+				$exe2=mysql_query($req2);
+				$exe3=mysql_query($req3);
+				$exe4=mysql_query($req4);
+    			$idmax1=mysql_result($exe3,0); 
+    			$idmax2=mysql_result($exe4,0); 
+
+				$req5="insert into avoir(id_prod,id_prix) values ('$idmax1','$idmax2')";
+
+				$exe5=mysql_query($req5);
+
 				header("location:produit.php");
+				echo $exe4;
 		}
 	?>
 <?php require_once ("header.php");?>

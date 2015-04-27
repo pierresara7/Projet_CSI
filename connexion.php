@@ -15,6 +15,8 @@ $row = mysql_fetch_row($req);
 	else{
 		session_start();
 		$_SESSION['login'] = $login;
+		$req2=mysql_query("SELECT id_Client from Client where login='".$login."'");
+		$_SESSION['id_Client']=mysql_result($req2,0);
 		header ('Location: index.php' );	
 		exit();
 	}

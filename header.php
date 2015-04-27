@@ -12,7 +12,7 @@
 		<div class="navbar">
 			<div class="navbar-inner">
 				<ul class="nav pull-right">
-					<li><a href="form_connexion.html">Accueil</a></li>
+					<li><a href="form_connexion.php">Accueil</a></li>
 					<li><a href="client.php">Nos Clients</a></li>
 					<li><a href="produit.php">Nos Produits</a></li>
 					<li><a href="bilan.php">Bilan</a></li>

@@ -1,17 +1,11 @@
 <?php
-	require_once("tools.php");
-	connexion2();
-// recuperation de l'login
-	$login=$_POST['login'];
+require_once ("header.php");
 
-// recuperation de du mot de passe et cryptage
-	$password=$_POST['mdp'];
-	$cryptedPw = md5($password);
-
-
+require_once ("footer.php");
+require_once ("connexion_database.php");
 
 	//requete permettant de rechercher l'utilisateur
-$req=mysql_query("SELECT COUNT(*) > 0 FROM users WHERE username='".$login."' AND password='".$cryptedPw."'");
+$req=mysql_query("SELECT COUNT(*) > 0 FROM AuthentificationClient WHERE login='".$login."' AND mdp='".$cryptedPw."'");
 $row = mysql_fetch_row($req);
 	if($row[0]==0){
 		

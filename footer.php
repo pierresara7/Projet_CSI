@@ -5,10 +5,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="span8" align="right">
-					<font face="Times New Roman, Times, serif">Copyright &copy; MIAGE-NANCY 2015 - Soutenance Projet CSI</font>
+					<font face="Times New Roman, Times, serif">Copyright &copy; MIAGE-NANCY 2015 - Soutenance Projet CSI_Groupe3</font>
 				</div>
 				<div class="span4" align="right">
-					<font face="Times New Roman, Times, serif">Groupe3</font>
 				</div>
 			</div>
 		</div>

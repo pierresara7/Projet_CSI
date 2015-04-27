@@ -28,7 +28,7 @@ if ($req==TRUE) {
  $req2=mysql_query("Select date_deb_bilan,montant_total,quantite_panier from bilan as b INNER join hebdomadaire as h on b.id_bilan=h.id_bilan");
 if ($req2) {
           echo"<table class='span8'> <tr>
-            <th align='center'>Date hebdomadaire</th>
+          <th align='center'>Date hebdomadaire</th>
             <th align='center'>Montant Total</th>
             <th align='center'>Quantité</th>
           

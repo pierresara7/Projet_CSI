@@ -3,7 +3,7 @@
   $dbhost = "localhost"; 
   
   // Name of the database
-  $dbname = "bdd3";
+  $dbname = "bdd2";
   
   // User name
   $dbuser = "root";

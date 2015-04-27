@@ -27,6 +27,7 @@
 				<p><a href="vente.php" class='btn btn-default btn-lg btn-block'>Acheter un Produit</a></p>
 				<p><a href="livraison.php" class='btn btn-default btn-lg btn-block'>Enregistrer une livraison</a></p>
 				<p><a href="form_validation_panier.php" class='btn btn-default btn-lg btn-block'>Valider Panier</a></p>
+				<p><a href="offre.php" class='btn btn-default btn-lg btn-block'>Nos Offres</a></p>
 				<br>
 				<p><form class="block" action="search.php" method="post">
 					<input type="search" name="search" placeholder="Votre Recherche">

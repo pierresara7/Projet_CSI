@@ -28,7 +28,7 @@
 ini_set('display_errors', 1);
 try{
 	$options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-	$bd = new PDO('mysql:host=127.0.0.1;dbname=pharmacie','root','',$options);
+	$bd = new PDO('mysql:host=127.0.0.1;dbname=bdd2','root','',$options);
 
 }catch(PDOException $e){
 	die('Erreur: '.$e->getMessage());
@@ -53,7 +53,7 @@ $produits = $req->fetchAll(PDO::FETCH_OBJ);
 	<div class="container">
 		<div class="row">
 
-			<div class="span5" align="center"><h3>Vente</h3></div>
+			<div class="span5" align="center"><h3>Achat</h3></div>
 
 			<?php if($_GET && $_GET['message']): //test si la variable GET est définie ?>
 				<div class="span3 alert alert-success"><?php echo $_GET['message'] ?></div>		
@@ -64,7 +64,7 @@ $produits = $req->fetchAll(PDO::FETCH_OBJ);
 		    <pre class="span8">
 
 
-		Produit     	       <select id="produit" name="produit" onchange="calcul()"><option></option><?php require ("connexion.php");
+		Produit     	       <select id="produit" name="produit" onchange="calcul()"><option></option><?php require ("connexion_database.php");
 			 				   $req="select refprod,libprd from produit";
 			 				   $exe=mysql_query($req);
 			 				   while($l=mysql_fetch_array($exe)){

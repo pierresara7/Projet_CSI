@@ -4,5 +4,5 @@ include("connexion_database.php");
 	$dateDuJour=
 $reqq=mysql_query("UPDATE panier Set statut_panier='Valide' Where idpanier=$idpanier");
 $reqq2=mysql_query("SELECT montant_ttc FROM panier Where idpanier=$idpanier");
-
+include("generer_bilan.php");
 ?>

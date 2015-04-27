@@ -2,13 +2,13 @@
 <?php require_once ("header.php") ?>
 	<div class='container'>	
 		<div class='row'>
-			<div class='span6'><h3>Liste de Nos Médicaments</h3></div>
+			<div class='span6'><h3>Liste des Produits</h3></div>
 			<div class='span3'>
 	
 				<a href='ajout-produit.php' class='btn btn-default pull-right' >
 					<i class='icon-plus'></i>
 
-					Nouveau Medicament
+					Nouveau Produits
 				</a>
 			</div>
 		</div>

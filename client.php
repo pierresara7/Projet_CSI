@@ -16,7 +16,7 @@
 			<?php endif ?>
 
 		<?php
-    		require_once ("connexion.php");
+    		require_once ("connexion_database.php");
 			$req="select * from client";
 			$exe=mysql_query($req);
  

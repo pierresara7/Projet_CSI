@@ -3,8 +3,10 @@
   //require_once ("header.php");
   require("connexion_database.php");
   $idPanier=$_GET['idPanier'];
-  $req=mysql_query("SELECT nom_prod FROM produit as p INNER JOIN avoir as a on p.id_Prod=a.id_Prod INNER JOIN Prix_produit as pr on a.id_Prix=a.id_Prix
-   INNER JOIN  Panier as pa on pa.idPanier=a.idPanier 
+  $req=mysql_query("SELECT nom_prod,date_commande,quantite_prod,Prix FROM produit as p 
+    INNER JOIN avoir as a on p.id_Prod=a.id_Prod INNER JOIN Prix_produit as pr on a.id_Prix=a.id_Prix
+    INNER JOIN avoir4 as a4 on a4.idPanier=p.idPanier
+   INNER JOIN  Panier as pa on pa.idPanier=a4.idPanier 
   	Where a.idPanier='$idPanier'");
   
   if ($req) {

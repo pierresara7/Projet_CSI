@@ -34,6 +34,7 @@
 		  
 		  <p>
 		    <input type="image" class="img_connexion"src="image/connexion.jpg" value="submit" align="middle"/>
+			
 		  </p>
 		</form>
 	  </div>

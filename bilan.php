@@ -1,11 +1,7 @@
 <?php
 require_once("connexion_database.php");
-<<<<<<< HEAD
-$req=mysql_query("Select * from bilan as b INNER join journaliere as j on b.id_bilan=j.id_bilan");
-=======
 require_once("header.php");
 $req=mysql_query("Select date_deb_bilan,montant_total,quantite_panier from bilan as b INNER join journaliere as j on b.id_bilan=j.id_bilan");
->>>>>>> origin/master
 if ($req==TRUE) {
           echo"<table class='span8'>
           <tr>

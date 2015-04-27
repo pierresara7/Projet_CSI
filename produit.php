@@ -2,13 +2,13 @@
 <?php require_once ("header.php") ?>
 	<div class='container'>	
 		<div class='row'>
-			<div class='span6'><h3>Liste des Produits</h3></div>
+			<div class='span6'><h3>Liste de Nos Médicaments</h3></div>
 			<div class='span3'>
 	
 				<a href='ajout-produit.php' class='btn btn-default pull-right' >
 					<i class='icon-plus'></i>
 
-					Nouveau Produits
+					Nouveau Medicament
 				</a>
 			</div>
 		</div>
@@ -38,6 +38,12 @@
 					<td align='center'>".$l['nom_prod']."</td>
 					<td align='center'>".$l['prix']."</td>
 					<td align='center'><a href=\"modification-produit.php?id=".$l['id_prod']."\"><img src=\"b_edit.png\"></a></td>
+					";?><td>
+					<form action="GET" method="ajout_produit_">
+						
+					</form>
+					</td>
+					<?php
 					<td align='center'><a href=\"modification-produit.php?id=".$l['id_prod']."\"><img src=\"b_edit.png\"></a></td>
 					<td align='center'><a href=\"suppression-produit.php?id=".$l['id_prod']."\" onclick=\"return(confirm('<b>Etes-vous sûr de vouloir supprimer ce produit?</b>'));\" ><img src=\"b_drop.png\"></a></td> 
 

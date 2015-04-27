@@ -1,6 +1,6 @@
 <?php
 require_once("connexion_database.php");
-$req=mysql_query("Select (*) from bilan as b INNER join journaliere as j on b.id_bilan=j.id_bilan");
+$req=mysql_query("Select * from bilan as b INNER join journaliere as j on b.id_bilan=j.id_bilan");
 if ($req==TRUE) {
           echo"<table class='span8'>
             <th align='center'>Date</th>

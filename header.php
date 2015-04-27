@@ -25,10 +25,8 @@
 			<div class="span3">
 				<br>
 				<p><a href="vente.php" class='btn btn-default btn-lg btn-block'>Acheter un Produit</a></p>
-				<p><a href="bon-commande.php" class='btn btn-default btn-lg btn-block'>Passer une Commande</a></p>
 				<p><a href="livraison.php" class='btn btn-default btn-lg btn-block'>Enregistrer une livraison</a></p>
 				<p><a href="commande-client.php" class='btn btn-default btn-lg btn-block'>Enregistrer une Commande</a></p>
-				<p><a href="facture_client.php" class='btn btn-default btn-lg btn-block'>Facture Client</a></p>
 				<br>
 				<p><form class="block" action="search.php" method="post">
 					<input type="search" name="search" placeholder="Votre Recherche">

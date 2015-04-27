@@ -14,7 +14,6 @@
 				<ul class="nav pull-right">
 					<li><a href="client.php">Nos Clients</a></li>
 					<li><a href="produit.php">Nos Produits</a></li>
-					<li><a href="commande.php">Nos Commandes</a></li>
 					<li><a href="bilan.php">Bilan</a></li>
 					<li><a href="contact.php">Contact</a></li>
 				</ul>

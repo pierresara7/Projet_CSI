@@ -12,7 +12,6 @@
 		<div class="navbar">
 			<div class="navbar-inner">
 				<ul class="nav pull-right">
-					<li><a href="accueil.php">Acceuil</a></li>
 					<li><a href="client.php">Nos Clients</a></li>
 					<li><a href="produit.php">Nos Produits</a></li>
 					<li><a href="commande.php">Nos Commandes</a></li>

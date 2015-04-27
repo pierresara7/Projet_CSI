@@ -45,6 +45,7 @@
 					Quantite <input name="quantite" type="text"/> 
 					<input name="id_prod" type="hidden"value=<?php echo $l['id_prod']?>/> 
 					<input name="idPanier" type="hidden"value=<?php echo $idPanier?>/> 
+					<input name="prix" type="hidden"value=<?php echo $l['id_prod']?>/> 
 					<input type="submit" value="Ajouter Panier" >
 					</form>
 					</td>

@@ -10,6 +10,7 @@
 	<p></p>
 	<div class="container">
 		<div class="navbar">
+				<?php require_once ("form_connexion.php");?>
 			<div class="navbar-inner">
 				<ul class="nav pull-right">
 					<li><a href="form_connexion.php">Accueil</a></li>
@@ -25,7 +26,7 @@
 		<div class="row">
 			<div class="span3">
 				<br>
-				<p><a href="vente.php" class='btn btn-default btn-lg btn-block'>Acheter un Produit</a></p>
+				<p><a href="vente.php" class='btn btn-default btn-lg btn-block'>Acheter un Produit</a></p> 
 				<p><a href="livraison.php" class='btn btn-default btn-lg btn-block'>Enregistrer une livraison</a></p>
 				<p><a href="form_validation_panier.php" class='btn btn-default btn-lg btn-block'>Valider Panier</a></p>
 				<p><a href="offre.php" class='btn btn-default btn-lg btn-block'>Nos Offres</a></p>

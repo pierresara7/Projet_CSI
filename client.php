@@ -26,8 +26,8 @@
 				<th align='center'>Prenom</th>
 				<th align='center'>Adresse</th>
 				<th align='center'>Téléphone</th>
-				<th align='center' colspan='2'>Faire</th>
 				</tr>";
+				
  // use bgcolor ds les tr
     		//affichage des données:
     		while($l= mysql_fetch_array($exe)){
@@ -36,10 +36,7 @@
 					<td align='center'>".$l[2]."</td>
 					<td align='center'>".$l[3]."</td>
 					<td align='center'>".$l[4]."</td>
-					<td align='center'><a href=\"modification-client.php?id=".$l['idcli']."\"><img src=\"b_edit.png\"></a></td>
-					<td align='center'><a href=\"suppression-client.php?id=".$l['idcli']."\" onclick=\"return(confirm('<b>Etes-vous sûr de vouloir supprimer ce client?</b>'));\" ><img src=\"b_drop.png\"></a></td> 
-
-				</tr>";
+					</tr>";
     		}
 			echo"</table>";
 		?>

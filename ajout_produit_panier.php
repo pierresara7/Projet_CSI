@@ -16,5 +16,5 @@ else{
 	$req5=mysql_query("INSERT INTO avoir4 (idPanier,id_prod,quantite_prod) VALUES('$idPanier','$id_prod','$quantite')");
 
 } 
-}
+
 ?>

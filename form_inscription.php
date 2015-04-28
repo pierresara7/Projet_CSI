@@ -1,18 +1,4 @@
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title>Formulaire</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="stylesheet" href="style.css"/>
-	 	<script type="text/javascript" src="form_inscription.js">
-
-	 	</script>
-
-  </head>
-	
-  <body>
-  			  <div class="panel2">
-
 <?php 
 session_start();
 if (isset($_SESSION['login'])) {

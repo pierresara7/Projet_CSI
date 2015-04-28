@@ -2,7 +2,7 @@
 <?php require_once ("header.php") ?>
 	<div class='container'>	
 		<div class='row'>
-			<div class='span6'><h3>Liste de Nos Médicaments</h3></div>
+			<div class='span6'><h3>Liste de Nos Produit</h3></div>
 			<div class='span3'>
 	
 				<a href='ajout-produit.php' class='btn btn-default pull-right' >
@@ -46,7 +46,7 @@
 					<input name="id_prod" type="hidden"value=<?php echo $l['id_prod']?>/> 
 					<input name="idPanier" type="hidden"value=<?php echo $idPanier?>/> 
 					<input name="prix" type="hidden"value=<?php echo $l['id_prod']?>/> 
-					<input type="submit" value="Ajouter Panier" >
+					<input type="submit" value="Ajouter Panier" name="ok" value="ok">
 					</form>
 					</td>
 					<?php

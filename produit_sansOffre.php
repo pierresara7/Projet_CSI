@@ -1,7 +1,7 @@
 <?php
 include("connexion_database.php");
 include("header.php");
-$req=mysql_query("SELECT id_Prod,nom_prod FROM produit where a_reduction=0");
+$req=mysql_query("SELECT id_prod,nom_prod FROM produit where a_reduction=0");
 	if($req){
 		echo"<table class='span8'>
 				<tr bgcolor='#CCCCCC'>
@@ -28,9 +28,12 @@ while ($data = mysql_fetch_array($list))
 ?>
 </select>
 <input type="submit" name="go" value="Valider" class="btn btn-danger">
+</form>
 					</td>
 					<td>
 					<form method="POST" action="beneficie_OP.php">
+					<input name="id_prod" type="hidden"value=<?php echo $l['id_prod']?>/> 
+
 					<select name="liste">
 <?php
 $sql2='SELECT idOP,pourcentageOP from Offre_promotionnelle';
@@ -39,7 +42,8 @@ while ($data2 = mysql_fetch_array($list2))
      {echo'<option value="'.$data2['idOP'].'">'.$data2['pourcentageOP'].' %</option>';}
 ?>
 </select>
-<input type="submit" name="go" value="Valider" class="btn btn-danger">
+<input type="submit" name="ok" value="ok" class="btn btn-danger">
+</form>
 					</td>
 					<?php
 					echo "
@@ -53,4 +57,6 @@ while ($data2 = mysql_fetch_array($list2))
 	{
 					 die(mysql_error());
 	}
+
+		
 ?>

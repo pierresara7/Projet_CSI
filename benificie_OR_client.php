@@ -13,7 +13,6 @@ $req="select id_client,login,nom_client,prenom_client,email from client where a_
 				<th align='Selectionner'>Selectionner</th>
 
 				</tr>";
-				$idOR=$_GET['idOR'];
 
  // use bgcolor ds les tr
     		//affichage des données:
@@ -27,8 +26,6 @@ $req="select id_client,login,nom_client,prenom_client,email from client where a_
 					<td> 
 					<form action="" method="Post">
 					<input name="id_client" type="hidden" value=<?php echo $l[0]; ?> >	
-					<input name="idOR" type="hidden" value=<?php echo $idOR; ?> >	
-
 					<input type="submit" value="Valider" class="btn btn-danger">
 					</form>
 					</td>
@@ -36,9 +33,9 @@ $req="select id_client,login,nom_client,prenom_client,email from client where a_
 					</tr>";
     		}
 			echo"</table>";
-			if(isset($_POST['id_client']) && isset($_POST['idOR'])){ 
+			if(isset($_POST['id_client'])){ 
 	$id_client=$_POST['id_client'];
-	$idOR=$_['idOR'];
+	$idOR=$_GET['idOR'];
 $req8=mysql_query("UPDATE client set a_reduction=1 Where id_client='$id_client'") or die(mysql_error());
 $req5=mysql_query("INSERT INTO estproposer1 values ('$id_client','$idOR')");
 

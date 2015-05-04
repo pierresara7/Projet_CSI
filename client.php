@@ -22,10 +22,10 @@
  
 			echo"<table class='span8'>
 				<tr bgcolor='#CCCCCC'>
+				<th align='center'>Login</th>
 				<th align='center'>Nom</th>
 				<th align='center'>Prenom</th>
-				<th align='center'>Adresse</th>
-				<th align='center'>Téléphone</th>
+				<th align='center'>email</th>
 				</tr>";
 				
  // use bgcolor ds les tr

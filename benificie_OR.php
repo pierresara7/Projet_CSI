@@ -12,7 +12,7 @@ where pr.id_prod='$idprod'") or die(mysql_error());
 			$prix=$l['prix'];
 		}
 $nouveau=$prix-(($prix*$pourcentage)/100);
-$req4=mysql_query("UPDATE prix_produit set prix='$nouveau' where id_prix='$id';") or die(mysql_error());
+$req4=mysql_query("UPDATE prix_produit set prix_reduc='$nouveau' where id_prix='$id';") or die(mysql_error());
 $req8=mysql_query("UPDATE produit set a_reduction=1,id_OffreReduc='$idOR' Where id_prod='$idprod'") or die(mysql_error());
 	header ('Location: benificie_OR_client.php?idOR='.$idOR );	
 

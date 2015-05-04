@@ -29,7 +29,9 @@ $req=mysql_query("SELECT p.id_prod,nom_prod,prix,a.id_prod FROM produit as p
 
 					";?>
 					<td>
-					<form method="POST" action="beneficie_OR.php">
+					<form method="POST" action="benificie_OR.php">
+				<input name="id_prod" type="hidden" value=<?php echo $l['id_prod']?>> 
+
 					<select name="liste">
 <?php
 $sql='SELECT id_OffreReduc,pourcentageOR from Offre_reductionnelle';
@@ -43,7 +45,7 @@ while ($data = mysql_fetch_array($list))
 					</td>
 					<td>
 					<form method="POST" action="beneficie_OP.php">
-					<input name="id_prod" type="hidden"value=<?php echo $l['id_prod']?>> 
+					<input name="id_prod" type="hidden" value=<?php echo $l['id_prod']?>> 
 
 					<select name="liste">
 <?php

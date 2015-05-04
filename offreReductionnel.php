@@ -2,7 +2,7 @@
 <?php require_once ("header.php");?>
 <div id="contact">
 <form method="post" action="">
-    <h2 align="center"> Nouveau Offre Reductionnel </h2>
+    <h2 align="center"> Nouvelle Offre Reductionnel </h2>
     <pre>
 
         Date debut Offre:          <input name="datedeb" type="date" style="height:30px" />   
@@ -25,7 +25,7 @@ if((isset($_POST['datefin'])) && (isset($_POST['pourcentage'])) && (isset($_POST
 			$pourcentage=$_POST['pourcentage'];
 
 
-	$req=mysql_query("INSERT INTO offre_reductionnelle (pourcentageOR,datedebut_reduc,datefin_reduc) values('$pourcentage','$datedeb','$datefin')");
+	$req=mysql_query("INSERT INTO offre_reductionnelle (pourcentageOR,date_deb_reduc,date_fin_reduc) values('$pourcentage','$datedeb','$datefin') ")or die(mysql_error());
 
 }
  require_once ("footer.php");?>

@@ -4,7 +4,7 @@
 		<div class='row'>
 			<div class='span6' align='center'><h3>Liste de Nos Clients</h3></div>
 			<div class='span3'>
-				<a href='ajout-client.php' class='btn btn-default pull-right'>
+				<a href='form_inscription.php' class='btn btn-default pull-right'>
 					<i class='icon-plus'></i>
 					Nouveau Client
 				</a>

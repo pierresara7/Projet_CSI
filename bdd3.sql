@@ -1,5 +1,40 @@
+-- phpMyAdmin SQL Dump
+-- version 4.1.4
+-- http://www.phpmyadmin.net
+--
+-- Client :  127.0.0.1
+-- Généré le :  Mar 28 Avril 2015 à 21:32
+-- Version du serveur :  5.6.15-log
+-- Version de PHP :  5.4.24
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
+-- Base de données :  `bdd3`
+--
+
+DELIMITER $$
+--
+-- Procédures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `changement_prix`(IN `idOP` INT, IN `idprod` INT)
+BEGIN
+   SET @pourcentange= (SELECT pourcentageOP from offre_promotionnelle where idOP=@idOP);
+    SET @prix=(select prix from prix_produit as p INNER JOIN avoir as a on p.id_prix=a.id_prix INNER JOIN produit as pr on a.id_prod=pr.id_prod
+where id_prod='@idprod');
+SET @nouveau=@prix-((@prix*@pourcentange)/100);
+UPDATE produit set a_reduction=1,id_op=@idOP Where id_produit=@idprod;
+UPDATE prix_produit set prix=@nouveau where id_prod=idprod;
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -14,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
   `EMAIL_ADMIN` varchar(30) NOT NULL,
   PRIMARY KEY (`ID_ADMIN`),
   UNIQUE KEY `ADMINISTRATEUR_PK` (`ID_ADMIN`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -30,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `adresse` (
   `VILLE` mediumtext,
   PRIMARY KEY (`ID_ADRESSE`),
   UNIQUE KEY `ADRESSE_PK` (`ID_ADRESSE`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -46,6 +81,19 @@ CREATE TABLE IF NOT EXISTS `authentificationclient` (
   UNIQUE KEY `AUTHENTIFICATIONCLIENT_PK` (`LOGIN`),
   KEY `AVOIR3_FK` (`ID_CLIENT`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `authentificationclient`
+--
+
+INSERT INTO `authentificationclient` (`LOGIN`, `ID_CLIENT`, `MDP`) VALUES
+('', 1, 'd41d8cd98f00b204e980'),
+('pierresara7', 1, '97282b278e5d51866f8e'),
+('dssdsq', 1, '97282b278e5d51866f8e'),
+('efdsfs', 1, '97282b278e5d51866f8e'),
+('dsfds@dsd.com', 1, '97282b278e5d51866f8e'),
+('df@dssd.com', 1, 'c4ca4238a0b923820dcc'),
+('ezez@sdsd.com', 3, '4a7d1ed414474e4033ac');
 
 -- --------------------------------------------------------
 
@@ -65,11 +113,11 @@ CREATE TABLE IF NOT EXISTS `avoir` (
 -- Contenu de la table `avoir`
 --
 
---
--- Structure de la table `avoir`
---
-
-
+INSERT INTO `avoir` (`ID_PROD`, `ID_PRIX`) VALUES
+(0, 0),
+(1, 1),
+(2, 2),
+(5, 5);
 
 -- --------------------------------------------------------
 
@@ -83,6 +131,29 @@ CREATE TABLE IF NOT EXISTS `avoir1` (
   PRIMARY KEY (`ID_CLIENT`,`ID_ADRESSE`),
   KEY `AVOIR1_FK` (`ID_CLIENT`),
   KEY `AVOIR5_FK` (`ID_ADRESSE`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `avoir1`
+--
+
+INSERT INTO `avoir1` (`ID_CLIENT`, `ID_ADRESSE`) VALUES
+(1, 0),
+(1, 1),
+(2, 0),
+(3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `avoir4`
+--
+
+CREATE TABLE IF NOT EXISTS `avoir4` (
+  `ID_PROD` int(11) NOT NULL,
+  `IDPANIER` int(11) NOT NULL,
+  `QUANTITE_PROD` int(11) NOT NULL,
+  PRIMARY KEY (`ID_PROD`,`IDPANIER`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -99,13 +170,16 @@ CREATE TABLE IF NOT EXISTS `bilan` (
   `montant_total` float NOT NULL,
   PRIMARY KEY (`ID_BILAN`),
   UNIQUE KEY `BILAN_PK` (`ID_BILAN`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
 
 --
 -- Contenu de la table `bilan`
 --
 
-
+INSERT INTO `bilan` (`ID_BILAN`, `DATE_DEB_BILAN`, `DATE_FIN_BILAN`, `quantite_panier`, `montant_total`) VALUES
+(34, '2015-04-27', '2015-04-27', 4, 8000),
+(35, '2015-04-27', '2015-05-03', 4, 8000),
+(36, '2015-04-01', '2015-04-30', 4, 8000);
 
 -- --------------------------------------------------------
 
@@ -118,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `categorieproduit` (
   `INTITULE_CAT` varchar(30) NOT NULL,
   PRIMARY KEY (`ID_CATPROD`),
   UNIQUE KEY `CATEGORIEPRODUIT_PK` (`ID_CATPROD`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -131,15 +205,22 @@ CREATE TABLE IF NOT EXISTS `client` (
   `LOGIN` char(15) NOT NULL,
   `NOM_CLIENT` mediumtext NOT NULL,
   `PRENOM_CLIENT` mediumtext NOT NULL,
-  `PSEUDO_CLIENT` varchar(15) NOT NULL,
-  `MDP_CLIENT` varchar(15) NOT NULL,
   `EMAIL` varchar(30) NOT NULL,
   `SEXE` char(1) NOT NULL,
   `TEL` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`ID_CLIENT`),
   UNIQUE KEY `CLIENT_PK` (`ID_CLIENT`),
   KEY `AVOIR2_FK` (`LOGIN`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `client`
+--
+
+INSERT INTO `client` (`ID_CLIENT`, `LOGIN`, `NOM_CLIENT`, `PRENOM_CLIENT`, `EMAIL`, `SEXE`, `TEL`) VALUES
+(1, '', '', '', '', '', '0'),
+(2, 'df@dssd.com', 'dsqsd²', 'dfs', 'df@dssd.com', 'm', NULL),
+(3, 'ezez@sdsd.com', 'ezaez', 'eze', 'ezez@sdsd.com', 'm', NULL);
 
 -- --------------------------------------------------------
 
@@ -192,7 +273,8 @@ INSERT INTO `hebdomadaire` (`ID_BILAN`, `ID_HEBDO`) VALUES
 (16, 1),
 (17, 1),
 (18, 1),
-(19, 1);
+(19, 1),
+(35, 1);
 
 -- --------------------------------------------------------
 
@@ -216,30 +298,33 @@ CREATE TABLE IF NOT EXISTS `historiser` (
 --
 
 INSERT INTO `historiser` (`IDPANIER`, `ID_BILAN`, `DATE_SAUVEGARDE`, `MONTANT_TOT_PANIER_VALIDER`, `QUANTITE_TOT_PANIER_VALIDER`) VALUES
-(5, 9, '2015-04-26 13:58:35', 0, 0),
-(0, 9, '2015-04-26 13:59:35', 0, 0),
-(5, 10, '2015-04-26 14:09:57', 0, 0),
-(5, 11, '2015-04-26 14:10:44', 0, 0),
-(5, 12, '2015-04-26 14:11:23', 0, 0),
-(5, 15, '2015-04-26 15:13:09', 0, 0),
-(5, 0, '2015-04-26 15:14:56', 0, 0),
-(5, 16, '2015-04-26 15:19:44', 0, 0),
-(5, 17, '2015-04-26 15:20:46', 0, 0),
-(5, 18, '2015-04-26 15:22:38', 0, 0),
-(5, 19, '2015-04-26 15:25:10', 0, 0),
-(5, 20, '2015-04-26 16:02:52', 0, 0),
-(5, 21, '2015-04-26 16:02:52', 0, 0),
-(5, 22, '2015-04-26 16:03:41', 0, 0),
-(5, 23, '2015-04-26 16:06:25', 0, 0),
-(5, 24, '2015-04-26 16:07:00', 0, 0),
-(5, 25, '2015-04-26 16:07:09', 0, 0),
-(5, 26, '2015-04-26 16:07:57', 0, 0),
-(5, 27, '2015-04-26 16:11:15', 0, 0),
-(5, 28, '2015-04-26 16:12:02', 0, 0),
-(5, 29, '2015-04-26 16:13:11', 0, 0),
-(5, 30, '2015-04-26 16:13:53', 0, 0),
-(5, 31, '2015-04-26 16:14:25', 0, 0),
-(5, 33, '2015-04-26 16:17:59', 0, 0);
+(5, 9, '2015-04-26 11:58:35', 0, 0),
+(0, 9, '2015-04-26 11:59:35', 0, 0),
+(5, 10, '2015-04-26 12:09:57', 0, 0),
+(5, 11, '2015-04-26 12:10:44', 0, 0),
+(5, 12, '2015-04-26 12:11:23', 0, 0),
+(5, 15, '2015-04-26 13:13:09', 0, 0),
+(5, 0, '2015-04-26 13:14:56', 0, 0),
+(5, 16, '2015-04-26 13:19:44', 0, 0),
+(5, 17, '2015-04-26 13:20:46', 0, 0),
+(5, 18, '2015-04-26 13:22:38', 0, 0),
+(5, 19, '2015-04-26 13:25:10', 0, 0),
+(5, 20, '2015-04-26 14:02:52', 0, 0),
+(5, 21, '2015-04-26 14:02:52', 0, 0),
+(5, 22, '2015-04-26 14:03:41', 0, 0),
+(5, 23, '2015-04-26 14:06:25', 0, 0),
+(5, 24, '2015-04-26 14:07:00', 0, 0),
+(5, 25, '2015-04-26 14:07:09', 0, 0),
+(5, 26, '2015-04-26 14:07:57', 0, 0),
+(5, 27, '2015-04-26 14:11:15', 0, 0),
+(5, 28, '2015-04-26 14:12:02', 0, 0),
+(5, 29, '2015-04-26 14:13:11', 0, 0),
+(5, 30, '2015-04-26 14:13:53', 0, 0),
+(5, 31, '2015-04-26 14:14:25', 0, 0),
+(5, 33, '2015-04-26 14:17:59', 0, 0),
+(5, 34, '2015-04-27 18:34:33', 0, 0),
+(5, 35, '2015-04-27 18:34:33', 0, 0),
+(5, 36, '2015-04-27 18:34:33', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -254,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `horaireretrait` (
   `NBRE_RETRAIT` int(11) NOT NULL,
   PRIMARY KEY (`IDHORAIRER`),
   UNIQUE KEY `HORAIRERETRAIT_PK` (`IDHORAIRER`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -278,7 +363,8 @@ INSERT INTO `journaliere` (`ID_BILAN`, `ID_JOURNALIER`) VALUES
 (9, 1),
 (10, 1),
 (11, 1),
-(12, 1);
+(12, 1),
+(34, 1);
 
 -- --------------------------------------------------------
 
@@ -311,7 +397,8 @@ INSERT INTO `mensuelle` (`ID_BILAN`, `ID_MENSUEL`) VALUES
 (29, 1),
 (30, 1),
 (31, 1),
-(33, 1);
+(33, 1),
+(36, 1);
 
 -- --------------------------------------------------------
 
@@ -322,12 +409,39 @@ INSERT INTO `mensuelle` (`ID_BILAN`, `ID_MENSUEL`) VALUES
 CREATE TABLE IF NOT EXISTS `offre_promotionnelle` (
   `IDOP` int(11) NOT NULL AUTO_INCREMENT,
   `DATEDEBUT_OFFRE` date NOT NULL,
-  `DATEFIN_OFFRE` DATE NOT NULL,
+  `DATEFIN_OFFRE` date NOT NULL,
   `CODE_PROMOTION` decimal(10,0) NOT NULL,
   `POURCENTAGEOP` float DEFAULT NULL,
   PRIMARY KEY (`IDOP`),
   UNIQUE KEY `OFFRE_PROMOTIONNELLE_PK` (`IDOP`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `offre_promotionnelle`
+--
+
+INSERT INTO `offre_promotionnelle` (`IDOP`, `DATEDEBUT_OFFRE`, `DATEFIN_OFFRE`, `CODE_PROMOTION`, `POURCENTAGEOP`) VALUES
+(1, '0000-00-00', '0000-00-00', '0', 0),
+(2, '2015-04-27', '2015-04-30', '0', 20);
+
+--
+-- Déclencheurs `offre_promotionnelle`
+--
+DROP TRIGGER IF EXISTS `ti_offre`;
+DELIMITER //
+CREATE TRIGGER `ti_offre` AFTER INSERT ON `offre_promotionnelle`
+ FOR EACH ROW BEGIN
+    SET @idOP= (SELECT idOP from inserted);
+    SET @pourcentange= (SELECT pourcentageOP from inserted);
+    SET @prix=(select prix from prix_produit as p INNER JOIN avoir as a on p.id_prix=a.id_prix INNER JOIN produit as pr on a.id_prod=pr.id_prod
+where id_prod='@id_pro');
+SET @nouveau=@prix-((@prix*@pourcentange)/100);
+UPDATE produit set a_reduction=1,id_op=@id_OP Where id_produit=@id_prod;
+UPDATE prix_produit set prix=nouveau;
+
+END
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -337,12 +451,12 @@ CREATE TABLE IF NOT EXISTS `offre_promotionnelle` (
 
 CREATE TABLE IF NOT EXISTS `offre_reductionnelle` (
   `ID_OFFREREDUC` int(11) NOT NULL AUTO_INCREMENT,
-  `DATE_DEB_REDUC` date not null,
+  `DATE_DEB_REDUC` date NOT NULL,
   `DATE_FIN_REDUC` date NOT NULL,
   `POURCENTAGEOR` float NOT NULL,
   PRIMARY KEY (`ID_OFFREREDUC`),
   UNIQUE KEY `OFFRE_REDUCTIONNELLE_PK` (`ID_OFFREREDUC`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -361,7 +475,7 @@ CREATE TABLE IF NOT EXISTS `panier` (
   PRIMARY KEY (`IDPANIER`),
   UNIQUE KEY `PANIER_PK` (`IDPANIER`),
   KEY `APPARTIENT_FK` (`ID_CLIENT`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -418,9 +532,6 @@ INSERT INTO `produit` (`ID_PROD`, `ID_OFFREREDUC`, `IDOP`, `ID_CATPROD`, `NOM_PR
 (4, NULL, NULL, 0, 'jhkj', 0),
 (5, NULL, NULL, 0, 'nbn,b', 0);
 
-CREATE TABLE IF NOT EXISTS `avoir4` (
-  `ID_PROD` int(11) NOT NULL,
-  `IDPANIER` int(11) NOT NULL,
-  QUANTITE_PROD int(11) NOT NULL,
-  PRIMARY KEY (`ID_PROD`,`IDPANIER`)
-) 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

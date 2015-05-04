@@ -1,13 +1,14 @@
 
   <?php
-  //require_once ("header.php");
+  require_once ("header.php");
   require("connexion_database.php");
-  $idPanier=$_GET['idPanier'];
-  $req=mysql_query("SELECT nom_prod,date_commande,quantite_prod,Prix FROM produit as p 
-    INNER JOIN avoir as a on p.id_Prod=a.id_Prod INNER JOIN Prix_produit as pr on a.id_Prix=a.id_Prix
-    INNER JOIN avoir4 as a4 on a4.idPanier=p.idPanier
-   INNER JOIN  Panier as pa on pa.idPanier=a4.idPanier 
-  	Where a.idPanier='$idPanier'");
+  $idPanier=$_SESSION['idPanier'];
+  $req=mysql_query("SELECT nom_prod,date_commande,quantite_prod,Prix,pa.idpanier FROM produit as p
+    INNER JOIN avoir as a on p.id_prod=a.id_prod 
+    INNER JOIN Prix_produit as pr on a.id_prix=pr.id_prix
+    INNER JOIN avoir4 as a4 on a4.id_prod=p.id_prod
+   INNER JOIN  panier as pa on pa.idpanier=a4.idpanier 
+  	Where pa.idpanier='$idPanier'");
   
   if ($req) {
           echo"<table class='span8'>
@@ -18,7 +19,7 @@
             <th align='center'>Total;</th>
             </tr>";
           while($l= mysql_fetch_array($req)){
-          	$table=$l['quantite_prod']*$l['Prix'];
+          	$Total=$l['quantite_prod']*$l['Prix'];
           echo"<tr>
               <td align='center'>".$l['date_commande']."</td>
               <td align='center'>".$l['nom_prod']."</td>
@@ -27,13 +28,14 @@
               <td align='center'>".$Total."</td>
     
             </tr>
-            </table>";?>
-           <a href="valider_panier.php?idPanier="<?php $idPanier ?>">Valider Votre Panier</a>
+            ";}?>
+            </table>
+           <a href="valider_panier.php">Valider Votre Panier</a>
 
             <?php
           }
-        }
+        
          else{
-          echo mysql_error();
+           die(mysql_error());
         }
   ?>

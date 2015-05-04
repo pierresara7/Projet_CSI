@@ -1,7 +1,6 @@
-SET @idOP= (SELECT idOP from inserted);
-SET @pourcentange= (SELECT pourcentageOP from inserted);
-SET @prix=select prix from prix_produit as p INNER JOIN avoir as a on p.id_prix=a.id_prix INNER JOIN produit as pr on a.id_prod=pr.id_prod
-where id_prod='@id_pro';
-SET @nouveau=@prix-((@prix*@pourcentange)/100);
-UPDATE produit set a_reduction=1,id_op=@id_OP Where id_produit=@id_prod;
-UPDATE prix_produit set prix=nouveau;
+<?php
+include('connexion_database.php');
+$req=mysql_query("CALL changement_prix(2,1)") or die(mysql_error());
+//$req2=mysql_result($req,0) or die(mysql_error());
+//echo $req2;
+//SET @p1='5'; CALL `last_prix`(@p0, @p1); SELECT @p0 AS `last_id_prix`;

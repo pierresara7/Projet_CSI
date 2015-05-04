@@ -1,21 +1,34 @@
 <?php
-require_once ("header.php");
-require_once ("footer.php");
 require_once ("connexion_database.php");
+// recuperation de l'login
+	$login=$_POST['login'];
 
+// recuperation de du mot de passe et cryptage
+	$password=$_POST['mdp'];
+	$cryptedPw = md5($password);
 	//requete permettant de rechercher l'utilisateur
-$req=mysql_query("SELECT COUNT(*) > 0 FROM authentificationClient WHERE login='".$login."' AND mdp='".$cryptedPw."'");
+$req=mysql_query("SELECT COUNT(*) > 0 FROM authentificationclient WHERE login='$login' AND mdp='$cryptedPw'");
 $row = mysql_fetch_row($req);
 	if($row[0]==0){
-		
-	header('Location: index.php?verif=0');
+							 die(mysql_error());
+
+	//header('Location: index.php');
 	
 	}
 	else{
 		session_start();
 		$_SESSION['login'] = $login;
-		$req2=mysql_query("SELECT id_Client from Client, authentificationClient where login='".$login."'");
+		$req2=mysql_query("SELECT id_client from client where login='$login'");
 		$_SESSION['id_Client']=mysql_result($req2,0);
+		$id=$_SESSION['id_Client'];
+		$req3=mysql_query("SELECT idpanier FROM panier where id_client='$id' and statut_panier='En cours'") or die(mysql_error());
+			$row = mysql_fetch_row($req3);
+	if($row[0]==0){
+		$_SESSION['idPanier']=0;
+	}
+	else{
+				$_SESSION['idPanier']=mysql_result($req3,0);
+}
 		header ('Location: index.php' );	
 		exit();
 	}

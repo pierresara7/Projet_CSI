@@ -2,7 +2,7 @@
 require_once("connexion_database.php");
 require_once("header.php");
 $req=mysql_query("Select b.date_deb_bilan,quantite_panier,montant_total from bilan as b INNER join journaliere as j on b.id_bilan=j.id_bilan");
-if ($req==TRUE) {
+if ($req) {
           echo"<table class='span8'>
           <tr>
             <th align='center'>Date journaliere</th>
@@ -10,21 +10,23 @@ if ($req==TRUE) {
             <th align='center'>Quantité</th>
           
             </tr>";
-          while($l= mysql_fetch_array($req)){
-          echo"<tr>
-              <td align='center'>".$l['date_deb_bilan']."</td>
-              <td align='center'>".$l['montant_total']."</td>
-              <td align='center'>".$l['quantite_panier']."</td>
-    
-            </tr>
-            </table>";
-        }
+         
     }
     else
     {
     					 die(mysql_error());
 	
     }
+     while($l= mysql_fetch_array($req)){
+          echo"<tr>
+              <td align='center'>".$l['date_deb_bilan']."</td>
+              <td align='center'>".$l['montant_total']."</td>
+              <td align='center'>".$l['quantite_panier']."</td>
+    
+            </tr>";
+        }
+                   echo " </table>";
+
  $req2=mysql_query("Select date_deb_bilan,montant_total,quantite_panier from bilan as b INNER join hebdomadaire as h on b.id_bilan=h.id_bilan");
 if ($req2) {
           echo"<table class='span8'> <tr>
@@ -40,7 +42,9 @@ if ($req2) {
               <td align='center'>".$ll['quantite_panier']."</td>
     
             </tr>
-            </table>";}
+            ";}
+                               echo " </table>";
+
         }
          else
     {
@@ -62,8 +66,10 @@ if ($req3) {
               <td align='center'>".$l3['quantite_panier']."</td>
     
             </tr>
-            </table>";
+            ";
         }
+                           echo " </table>";
+
     }
      else
     {

@@ -25,7 +25,7 @@ if((isset($_POST['datefin'])) && (isset($_POST['pourcentage'])) && (isset($_POST
 			$pourcentage=$_POST['pourcentage'];
 
 
-	$req=mysql_query("INSERT INTO offre_promotionnelle (pourcentageOP,datedebut_offre,datefin_offre) values('$pourcentage','$datedeb','$datefin')");
+	$req=mysql_query("INSERT INTO offre_reductionnelle (pourcentageOR,datedebut_reduc,datefin_reduc) values('$pourcentage','$datedeb','$datefin')");
 
 }
  require_once ("footer.php");?>

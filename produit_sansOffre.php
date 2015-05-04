@@ -38,7 +38,7 @@ while ($data = mysql_fetch_array($list))
      {echo'<option value="'.$data['id_OffreReduc'].'">'.$data['pourcentageOR'].'</option>';}
 ?>
 </select>
-<input type="submit" name="go" value="Valider" class="btn btn-danger">
+<input type="submit" value="Valider" class="btn btn-danger">
 </form>
 					</td>
 					<td>

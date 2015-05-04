@@ -1,10 +1,10 @@
 <?php
-    require_once ("connexion.php");
+    require_once ("connexion_database.php");
     $del  = $_GET['id'] ;
       //requête SQL:
     $sql = "DELETE 
             FROM produit
-	          WHERE refprod = ".$del;
+	        WHERE id_prod = ".$del;
     echo $sql ;	    
        //exécution de la requête:
     $exe = mysql_query($sql) ;

@@ -43,11 +43,11 @@
 		    <pre class="span8">
 
 			    Produit  <input type="text" name="nom" style="height:30px" placeholder="Nom du Produit">
-
-<select name="liste">
+			 Categorie : <select name="liste">
 <?php
+include("connexion_database.php");
 $sql='SELECT id_catprod,intitule_cat from categorieproduit';
-$list = mysql_query($sql);
+$list = mysql_query($sql) or die(mysql_error());
 while ($data = mysql_fetch_array($list))
      {echo'<option value="'.$data['id_catprod'].'">'.$data['intitule_cat'].'</option>';}
 ?>

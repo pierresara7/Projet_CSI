@@ -26,7 +26,7 @@ $req2=mysql_query("INSERT INTO adresse (nom_voie,num_rue,CP,ville) VALUES('$nom_
 //$id_adresse=mysql_result($req5,0);
 //$req3=mysql_query("INSERT INTO avoir1 (id_Client, id_adresse) VALUES('$id_Client', '$id_adresse')");
 
-//header ("Location: $_SERVER[HTTP_REFERER]" );	
+header ("Location: $_SERVER[HTTP_REFERER]" );	
 
 
 ?>

@@ -15,10 +15,11 @@
 						session_start();
 
 				if (isset($_SESSION['login'])){
-					echo $_SESSION['login'];
+					echo $_SESSION['login'];?>
+										<a href="deconnexion.php"><img class="img_connexion" src="image/deconnexion.jpg"></a>
+<?php
 					if($_SESSION['login']=='admin'){
 						?>
-					<a href="deconnexion.php"><img class="img_connexion" src="image/deconnexion.jpg"></a>
 
 							<div class="navbar-inner">
 				<ul class="nav pull-right">
@@ -36,13 +37,17 @@
 					<li><a href="index.php">Accueil</a></li>
 					<li><a href="produit.php">Nos Produits</a></li>
 					<li><a href="form_validation_panier.php" >Valider Panier</a><li>
+
 <?php
 					}
 
 
 				}else {
 
-				 require_once ("form_connexion.php");
+				 require_once ("form_connexion.php");?>
+				 					<a href="form_inscription.php"><img class="img_connexion" src="image/inscription.jpg"></a>
+
+				 <?php
 				
 				}
 				

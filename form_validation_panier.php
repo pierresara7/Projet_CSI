@@ -16,7 +16,7 @@
             <th align='center'>Produits</th>
             <th align='center'>Quantité</th>
             <th align='center'>Prix Unitaire</th>
-            <th align='center'>Total;</th>
+            <th align='center'>Total</th>
             </tr>";
           while($l= mysql_fetch_array($req)){
             $montant_ttc=$l['montant_ttc'];
@@ -29,8 +29,13 @@
               <td align='center'>".$Total."</td>
     
             </tr>
-            ";}?>
+            ";}
+            if(isset($montant_ttc)){
+            ?>
             <tr><td> Total</td><td> <?php echo $montant_ttc;?></td></tr>
+            <?php
+          }
+          ?>
             </table>
            <a href="valider_panier.php">Valider Votre Panier</a>
 

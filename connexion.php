@@ -12,7 +12,7 @@ $row = mysql_fetch_row($req);
 	if($row[0]==0){
 							 die(mysql_error());
 
-	//header('Location: index.php');
+	header('Location: index.php');
 	
 	}
 	else{

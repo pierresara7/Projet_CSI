@@ -10,3 +10,16 @@ SET @idClient=(SELECT MAX(id_Client) FROM Client);
 SET @idAdr=(SELECT id_adresse from inserted);
 INSERT INTO avoir1 (id_Client,id_adresse) VALUES('@idClient','@idAdr');
 END
+
+CREATE TRIGGER `ti_client` AFTER INSERT ON `client` FOR EACH ROW BEGIN
+SET @idClient=(SELECT MAX(id_Client) FROM Client);
+SET @login=(SELECT login from client where id_client='@idClient');
+SET @nb=(SELECT COUNT(*) > 0 FROM authentificationclient WHERE login='@login')
+if @nb>0
+then
+	roolback;
+END IF;
+END
+    
+    
+    

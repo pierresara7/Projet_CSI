@@ -17,13 +17,18 @@
 		<?php endif ?>
 
 		<?php
-		$id_Client=1;
+		$id_Client=$_SESSION['id_Client'];
     		require_once ("connexion_database.php");
-			$req="select p.id_prod,nom_prod,prix from produit as p INNER JOIN avoir as a on p.id_prod=a.id_prod INNER JOIN prix_produit as pr on a.id_prix=pr.id_prix  ";
-			$req2=mysql_query("SELECT MAX(idPanier) FROM panier Where id_Client='$id_Client'");
-			$idPanier=mysql_result($req2,0);
+			$req="select p.id_prod,nom_prod,prix,prix_reduc,p.id_offrereduc from produit as p 
+			INNER JOIN avoir as a on p.id_prod=a.id_prod 
+			INNER JOIN prix_produit as pr on a.id_prix=pr.id_prix  ";
+			$idPanier=$_SESSION['idPanier'];
 			$exe=mysql_query($req);
+			$req3=mysql_query("SELECT a_reduction from client where id_Client='$id_Client' ");
+	while($l=mysql_fetch_array($req3))
+{
  
+	$a_reduction=$l['a_reduction'];}
 			echo"<table class='span8'>
 				<tr bgcolor='#CCCCCC'>
 				<th align='center'>Nom</th>
@@ -37,15 +42,24 @@
  // use bgcolor ds les tr
     		//affichage des données:
     		while($l= mysql_fetch_array($exe)){
+    			if(($a_reduction==1) and ($l['id_offrereduc']!=0)){
+    				$prix2=$l['prix_reduc'];
+					}
+					else{     				
+						$prix2=$l['prix'];
+					 }
 				echo"<tr>
 					<td align='center'>".$l['nom_prod']."</td>
-					<td align='center'>".$l['prix']."</td>
-					";?><td>
+					
+					<td align='center'>".$prix2."</td>
+					
+					"; ?>
+					<td>
 					<form method="POST" action="ajout_produit_panier.php">
 					Quantite <input name="quantite" type="text"/> 
 					<input name="id_prod" type="hidden"value=<?php echo $l['id_prod']?>/> 
 					<input name="idPanier" type="hidden"value=<?php echo $idPanier?>/> 
-					<input name="prix" type="hidden"value=<?php echo $l['prix']?>/> 
+					<input name="prix" type="hidden"value=<?php echo $prix2 ?>/> 
 					<input type="submit" value="Ajouter Panier" >
 					</form>
 					</td>

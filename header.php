@@ -10,13 +10,34 @@
 	<p></p>
 	<div class="container">
 		<div class="navbar">
+
 				<?php
 						session_start();
 
 				if (isset($_SESSION['login'])){
 					echo $_SESSION['login'];
-					echo $_SESSION['id_Client'];
-										echo $_SESSION['idPanier'];
+					if($_SESSION['login']=='admin'){
+						?>
+								    <input type="image" class="img_deconnexion"src="image/deconnexion.jpg" value="submit" align="middle"/>
+
+							<div class="navbar-inner">
+				<ul class="nav pull-right">
+					<li><a href="client.php">Nos Clients</a></li>
+					<li><a href="bilan.php" >Bilan</a></li>
+					<li><a href="offre.php" >Nos Offres</a></li>
+					<li><a href="index.php">Accueil</a></li>
+					<li><a href="produit.php">Nos Produits</a></li>
+						<?php
+					}
+					else
+					{ ?>
+						<div class="navbar-inner">
+				<ul class="nav pull-right">
+					<li><a href="index.php">Accueil</a></li>
+					<li><a href="produit.php">Nos Produits</a></li>
+					<li><a href="form_validation_panier.php" >Valider Panier</a><li>
+<?php
+					}
 
 
 				}else {
@@ -24,33 +45,14 @@
 				 require_once ("form_connexion.php");
 				
 				}
+				
 				?>
-			<div class="navbar-inner">
-				<ul class="nav pull-right">
-					<li><a href="form_connexion.php">Accueil</a></li>
-					<li><a href="client.php">Nos Clients</a></li>
-					<li><a href="produit.php">Nos Produits</a></li>
-					<li><a href="bilan.php">Bilan</a></li>
-					<li><a href="contact.php">Contact</a></li>
-				</ul>
+				
+
+			</ul>
 			</div>
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
-			<div class="span3">
-				<br>
-				
-				<p><a href="form_validation_panier.php" class='btn btn-default btn-lg btn-block'>Valider Panier</a></p>
-				<p><a href="offre.php" class='btn btn-default btn-lg btn-block'>Nos Offres</a></p>
-				<br>
-				<p><form class="block" action="search.php" method="post">
-					<input type="search" name="search" placeholder="Votre Recherche">
-					<select name="choix">
-						<option>Client</option>
-						<option>Produit</option>
-					</select>
-					<input type="submit" name="go" value="Search" class='btn btn-info btn-lg btn-block'>
-				</form></p>
-			</div>
-			<div class=" content span9">
+
+		

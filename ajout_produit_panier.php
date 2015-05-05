@@ -15,11 +15,11 @@ $req=mysql_query("SELECT montant_ttc,quantite_panier FROM panier where idPanier=
 	$row = mysql_fetch_row($req);
 	if($row[0]==0)
 	{
-		$req4=mysql_query("INSERT INTO panier (id_client,montant_ttc,date_commande,quantite_panier) VALUES ('$id_client','$total','$dateDuJour',1)");
+		$req4=mysql_query("INSERT INTO panier (id_client,montant_ttc,date_commande,quantite_panier) VALUES ('$id_client','$total','$dateDuJour',1)") or die(mysql_error());
 	
-	$req6=mysql_query("SELECT MAX(idPanier) FROM panier");
+	$req6=mysql_query("SELECT MAX(idPanier) FROM panier") or die(mysql_error());
 	$idPanier2=mysql_result($req6,0);
-	$req5=mysql_query("INSERT INTO avoir4 (idPanier,id_prod,quantite_prod) VALUES('$idPanier3','$idProd','$quantite')");
+	$req5=mysql_query("INSERT INTO avoir4 (idPanier,id_prod,quantite_prod) VALUES('$idPanier2','$idProd','$quantite')") or die(mysql_error());
 	$_SESSION['idPanier']=$idPanier2;
 		
 	}
@@ -38,6 +38,7 @@ $req=mysql_query("SELECT montant_ttc,quantite_panier FROM panier where idPanier=
 	
 	
 } 
+header ("Location: $_SERVER[HTTP_REFERER]" );	
 
 
 ?>

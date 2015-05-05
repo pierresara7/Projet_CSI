@@ -7,11 +7,31 @@ require_once ("connexion_database.php");
 	$password=$_POST['mdp'];
 	$cryptedPw = md5($password);
 	//requete permettant de rechercher l'utilisateur
-$req=mysql_query("SELECT COUNT(*) > 0 FROM authentificationclient WHERE login='$login' AND mdp='$cryptedPw'");
+$req=mysql_query("SELECT COUNT(*) > 0 FROM authentificationclient WHERE login='$login' AND mdp='$cryptedPw'") or die(mysql_error());
 $row = mysql_fetch_row($req);
 	if($row[0]==0){
-							 die(mysql_error());
+		$req10=mysql_query("SELECT COUNT(*) > 0 FROM administrateur WHERE pseudo_admin='$login' AND mdp_admin='$password'") or die(mysql_error());
+		$row2 = mysql_fetch_row($req10);
+		if($row2[0]==0){
+			echo "echoué";
+				header('Location: index.php');
 
+<<<<<<< HEAD
+=======
+		}
+		else {
+					session_start();
+
+					$_SESSION['login'] = $login;
+					$req12=mysql_query("SELECT id_admin from administrateur where pseudo_admin='$login'") or die(mysql_error());
+					$_SESSION['id_Client']=mysql_result($req12,0);
+					$_SESSION['idPanier']=0;
+								echo "reussi";
+
+		}
+							 
+
+>>>>>>> origin/master
 	header('Location: index.php');
 	
 	}

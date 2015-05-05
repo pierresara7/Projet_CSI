@@ -21,9 +21,10 @@ include("header.php");
 
 				  <input type="image" class="img_connexion"src="image/inscription.jpg" value="Valider et Enregistrer" align="middle"> 
 				  </form>
-    
+  
 	<?php 
 include("footer.php");
+  header('Location: index.php');
  ?>
 
 	</html>

@@ -18,7 +18,7 @@
 					echo $_SESSION['login'];
 					if($_SESSION['login']=='admin'){
 						?>
-								    <input type="image" class="img_deconnexion"src="image/deconnexion.jpg" value="submit" align="middle"/>
+					<a href="deconnexion.php"><img class="img_connexion" src="image/deconnexion.jpg"></a>
 
 							<div class="navbar-inner">
 				<ul class="nav pull-right">

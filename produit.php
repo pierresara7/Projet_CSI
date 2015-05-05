@@ -42,7 +42,7 @@
  // use bgcolor ds les tr
     		//affichage des données:
     		while($l= mysql_fetch_array($exe)){
-    			if(($a_reduction=1) and ($l['id_offrereduc']!=0)){
+    			if(($a_reduction==1) and ($l['id_offrereduc']!=0)){
     				$prix2=$l['prix_reduc'];
 					}
 					else{     				
@@ -59,7 +59,7 @@
 					Quantite <input name="quantite" type="text"/> 
 					<input name="id_prod" type="hidden"value=<?php echo $l['id_prod']?>/> 
 					<input name="idPanier" type="hidden"value=<?php echo $idPanier?>/> 
-					<input name="prix" type="hidden"value=<?php echo $l['prix']?>/> 
+					<input name="prix" type="hidden"value=<?php echo $prix2 ?>/> 
 					<input type="submit" value="Ajouter Panier" >
 					</form>
 					</td>

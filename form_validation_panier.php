@@ -3,7 +3,7 @@
   require_once ("header.php");
   require("connexion_database.php");
   $idPanier=$_SESSION['idPanier'];
-  $req=mysql_query("SELECT nom_prod,date_commande,quantite_prod,Prix,pa.idpanier FROM produit as p
+  $req=mysql_query("SELECT nom_prod,date_commande,quantite_prod,Prix,pa.idpanier,montant_ttc FROM produit as p
     INNER JOIN avoir as a on p.id_prod=a.id_prod 
     INNER JOIN Prix_produit as pr on a.id_prix=pr.id_prix
     INNER JOIN avoir4 as a4 on a4.id_prod=p.id_prod
@@ -19,6 +19,7 @@
             <th align='center'>Total;</th>
             </tr>";
           while($l= mysql_fetch_array($req)){
+            $montant_ttc=$l['montant_ttc'];
           	$Total=$l['quantite_prod']*$l['Prix'];
           echo"<tr>
               <td align='center'>".$l['date_commande']."</td>
@@ -29,6 +30,7 @@
     
             </tr>
             ";}?>
+            <tr><td> Total</td><td> <?php echo $montant_ttc;?></td></tr>
             </table>
            <a href="valider_panier.php">Valider Votre Panier</a>
 

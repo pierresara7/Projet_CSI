@@ -1,6 +1,7 @@
 <?php
 include("connexion_database.php");
-session_start();
+include("header.php");
+
 
 $horaire=$_POST['myChoice'];
 $date=$_POST['date'];
@@ -13,6 +14,7 @@ $row = mysql_fetch_row($req);
 		 $req6=mysql_query("SELECT MAX(idhorairer) FROM horaireretrait") or die(mysql_error());
 		$idH=mysql_result($req6,0);
 		 $req3=mysql_query("INSERT INTO est_retirer values('$idH','$idPanier') ") or die(mysql_error());
+		     	    	echo "Commande validée";
 
 	}
 	else{
@@ -23,11 +25,13 @@ $row = mysql_fetch_row($req);
     			$id=$l['idhorairer'];
     		}
     if ($nbr<10){
+    	    	echo "Commande validée";
     	$req4=mysql_query("INSERT INTO est_retirer values('$id','$idPanier') ") or die(mysql_error());
     } else
     {
     	echo "le nombre maximun de retrait durant cette horaire est atteint";
     }
-$_SESSION['idPanier']=0;
 }
+$_SESSION['idPanier']=0;
+include("footer.php")
 ?>

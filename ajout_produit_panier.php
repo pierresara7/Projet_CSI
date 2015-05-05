@@ -38,7 +38,7 @@ $req=mysql_query("SELECT montant_ttc,quantite_panier FROM panier where idPanier=
 	
 	
 } 
-//header ("Location: $_SERVER[HTTP_REFERER]" );	
+header ("Location: $_SERVER[HTTP_REFERER]" );	
 
 
 ?>

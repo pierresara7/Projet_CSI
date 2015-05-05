@@ -14,7 +14,7 @@ $row = mysql_fetch_row($req);
 		$row2 = mysql_fetch_row($req10);
 		if($row2[0]==0){
 			echo "echoué";
-				//header('Location: index.php');
+				header('Location: index.php');
 
 		}
 		else {
@@ -23,12 +23,13 @@ $row = mysql_fetch_row($req);
 					$_SESSION['login'] = $login;
 					$req12=mysql_query("SELECT id_admin from administrateur where pseudo_admin='$login'") or die(mysql_error());
 					$_SESSION['id_Client']=mysql_result($req12,0);
+					$_SESSION['idPanier']=0;
 								echo "reussi";
 
 		}
 							 
 
-	//header('Location: index.php');
+	header('Location: index.php');
 	
 	}
 	else{
@@ -45,7 +46,7 @@ $row = mysql_fetch_row($req);
 	else{
 				$_SESSION['idPanier']=mysql_result($req3,0);
 }
-		//header ('Location: index.php' );	
+		header ('Location: index.php' );	
 		exit();
 	}
 

@@ -1,3 +1,6 @@
+<?php
+include("header.php")
+?>
 <table>
 <td>
 <p><a href="offreReductionnel.php" class='btn btn-default btn-lg btn-block'>Offre Reductionnel</a></p>

@@ -16,8 +16,6 @@ $row = mysql_fetch_row($req);
 			echo "echoué";
 				header('Location: index.php');
 
-<<<<<<< HEAD
-=======
 		}
 		else {
 					session_start();
@@ -29,9 +27,7 @@ $row = mysql_fetch_row($req);
 								echo "reussi";
 
 		}
-							 
-
->>>>>>> origin/master
+					
 	header('Location: index.php');
 	
 	}

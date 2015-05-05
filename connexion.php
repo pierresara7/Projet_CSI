@@ -29,6 +29,7 @@ $row = mysql_fetch_row($req);
 		}
 							 
 
+					
 	header('Location: index.php');
 	
 	}
